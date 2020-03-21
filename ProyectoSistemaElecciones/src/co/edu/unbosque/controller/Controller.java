@@ -49,7 +49,7 @@ public class Controller implements ActionListener {
 				arregloCiudad.add(Ciudad);
 				arregloPuesto.add(Puesto);
 				arregloDireccion.add(Direccion);
-
+                   //Bandera para ver que si los datos del archivo cvs
 				System.out.println(Departamento+"\t"+Ciudad+"\t"+Puesto+"\t"+Direccion);
 
 			}
