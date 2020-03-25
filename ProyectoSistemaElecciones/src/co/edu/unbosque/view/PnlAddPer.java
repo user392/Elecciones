@@ -18,7 +18,7 @@ public class PnlAddPer extends JPanel
 	
 	private JTextField ipnombre, ipapellido, isnombre, isapellido, iexpedicion, icedula, inacimiento, iaño;
 	
-	private JComboBox sexo, dia, mes;
+	private JComboBox<String> sexo, dia, mes;
 	private JDateChooser calendario , calendarioExpedicion;
 	private JButton volver , Registrar;
 
@@ -124,7 +124,7 @@ public class PnlAddPer extends JPanel
 		add(genero);
 		
 		String []pass = {"Seleccione","Masculino","Femenino"};
-		sexo = new JComboBox<Object>(pass);
+		sexo = new JComboBox<String>(pass);
 		sexo.setSize(150, 30);
 		sexo.setLocation(690, 50);
 		add(sexo);
