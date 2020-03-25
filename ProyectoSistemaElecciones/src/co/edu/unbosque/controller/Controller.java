@@ -50,15 +50,13 @@ public class Controller implements ActionListener {
 				arregloCiudad.add(Ciudad);
 				arregloPuesto.add(Puesto);
 				arregloDireccion.add(Direccion);
-
+				
 				 System.out.println(Departamento+"\t"+Ciudad+"\t"+Puesto+"\t"+Direccion);
-
 			}
 		} catch (IOException e) {
 
 			e.printStackTrace();
 		}
-
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		vtnPrincipal.getPnlInicio().getRegistrarCiu().addActionListener(this);
@@ -94,6 +92,121 @@ public class Controller implements ActionListener {
 	public void inscribir_Ciudadano() {
 
 	}
+	  public void comprobar_Cedula() {
+
+	    }
+
+	    public void buscar_Ciudadano() {
+
+	    }
+
+	    public void eliminar_Ciudadano() {
+
+	    }
+
+	    public void asignarPuestoVotacion() {
+
+	    }
+
+	    public void modificar_Ciudadano() {
+
+	    }
+
+	    public void calcularEstadisticasColombia_18_25() {
+
+	    }
+
+	    public void calcularEstadisticasColombia_26_29() {
+
+	    }
+
+	    public void calcularEstadisticasColombia_30_37() {
+
+	    }
+
+	    public void calcularEstadisticasColombia_38_49() {
+
+	    }
+
+	    public void calcularEstadisticasColombia_50_66() {
+
+	    }
+
+	    public void calcularEstadisticasColombia_67() {
+
+	    }
+
+	    public void calcularEstadisticasDepartamento_18_25() {
+
+	    }
+
+	    public void calcularEstadisticasDepartamento_26_29() {
+
+	    }
+
+	    public void calcularEstadisticasDepartamento_30_37() {
+
+	    }
+
+	    public void calcularEstadisticasDepartamento_38_49() {
+
+	    }
+
+	    public void calcularEstadisticasDepartamento_50_66() {
+
+	    }
+
+	    public void calcularEstadisticasDepartamento_67() {
+
+	    }
+
+	    public void calcularEstadisticasMunicipio_18_25() {
+
+	    }
+
+	    public void calcularEstadisticasMunicipio_26_29() {
+
+	    }
+
+	    public void calcularEstadisticasMunicipio_30_37() {
+
+	    }
+
+	    public void calcularEstadisticasMunicipio_38_49() {
+
+	    }
+
+	    public void calcularEstadisticasMunicipio_50_66() {
+
+	    }
+
+	    public void calcularEstadisticasMunicipio_67() {
+
+	    }
+
+	    public void calcularEstadisticasPuestoVotacion_18_25() {
+
+	    }
+
+	    public void calcularEstadisticasPuestoVotacion_26_29() {
+
+	    }
+
+	    public void calcularEstadisticasPuestoVotacion_30_37() {
+
+	    }
+
+	    public void calcularEstadisticasPuestoVotacion_38_49() {
+
+	    }
+
+	    public void calcularEstadisticasPuestoVotacion_50_66() {
+
+	    }
+
+	    public void calcularEstadisticasPuestoVotacion_67() {
+
+	    }
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -290,6 +403,9 @@ public class Controller implements ActionListener {
 			System.out.println("Registro");
 		}
 
+	
 	}
+	
+  
 
 }
