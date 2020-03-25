@@ -18,6 +18,7 @@ import co.edu.unbosque.model.Persona;
 import co.edu.unbosque.view.VtnPrincipal;
 
 public class Controller implements ActionListener {
+
 	private List<String> arregloDepartamento = new ArrayList<String>();
 	private List<String> arregloCiudad = new ArrayList<String>();
 	private List<String> arregloPuesto = new ArrayList<String>();
@@ -49,8 +50,8 @@ public class Controller implements ActionListener {
 				arregloCiudad.add(Ciudad);
 				arregloPuesto.add(Puesto);
 				arregloDireccion.add(Direccion);
-                   //Bandera para ver que si los datos del archivo cvs
-				System.out.println(Departamento+"\t"+Ciudad+"\t"+Puesto+"\t"+Direccion);
+
+				 System.out.println(Departamento+"\t"+Ciudad+"\t"+Puesto+"\t"+Direccion);
 
 			}
 		} catch (IOException e) {
@@ -59,24 +60,35 @@ public class Controller implements ActionListener {
 		}
 
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
-		vtnPrincipal.pnlInicio.registrarCiu.addActionListener(this);
-		vtnPrincipal.pnlInicio.buscarCiu.addActionListener(this);
-		vtnPrincipal.pnlInicio.graficas.addActionListener(this);
-		vtnPrincipal.pnlInicio.listaInscritos.addActionListener(this);
 
-		vtnPrincipal.pnlGraficas.homMuj.addActionListener(this);
-		vtnPrincipal.pnlGraficas.inscritos.addActionListener(this);
-		vtnPrincipal.pnlGraficas.insCol.addActionListener(this);
-		vtnPrincipal.pnlGraficas.insDep.addActionListener(this);
-		vtnPrincipal.pnlGraficas.insMun.addActionListener(this);
-		vtnPrincipal.pnlGraficas.insPuesto.addActionListener(this);
+		vtnPrincipal.getPnlInicio().getRegistrarCiu().addActionListener(this);
+		vtnPrincipal.getPnlInicio().getBuscarCiu().addActionListener(this);
+		vtnPrincipal.getPnlInicio().getGraficas().addActionListener(this);
+		vtnPrincipal.getPnlInicio().getRegistrarCiu().addActionListener(this);
+		vtnPrincipal.getPnlInicio().getListaInscritos().addActionListener(this);
 
-		vtnPrincipal.pnlAddPer.volver.addActionListener(this);
-		vtnPrincipal.pnlBuscarPer.volver.addActionListener(this);
-		vtnPrincipal.pnlGraficas.volver.addActionListener(this);
-		vtnPrincipal.pnlListaInscritos.volver.addActionListener(this);
+		vtnPrincipal.getPnlAddPer().getVolver().addActionListener(this);
+		vtnPrincipal.getPnlAddPer().getRegistrar().addActionListener(this);
 
-		vtnPrincipal.pnlGrfHommuj.atras.addActionListener(this);
+		vtnPrincipal.getPnlBuscarPer().getVolver().addActionListener(this);
+
+		vtnPrincipal.getPnlGraficas().getHomMuj().addActionListener(this);
+		vtnPrincipal.getPnlGraficas().getInscritos().addActionListener(this);
+		vtnPrincipal.getPnlGraficas().getInsCol().addActionListener(this);
+		vtnPrincipal.getPnlGraficas().getInsDep().addActionListener(this);
+		vtnPrincipal.getPnlGraficas().getInsMun().addActionListener(this);
+		vtnPrincipal.getPnlGraficas().getInsPuesto().addActionListener(this);
+		vtnPrincipal.getPnlGraficas().getVolver().addActionListener(this);
+
+		vtnPrincipal.getPnlGrfCol().getAtras().addActionListener(this);
+		vtnPrincipal.getPnlGrfDep().getAtras().addActionListener(this);
+		vtnPrincipal.getPnlGrfHommuj().getAtras().addActionListener(this);
+		vtnPrincipal.getPnlGrfInscritos().getAtras().addActionListener(this);
+		vtnPrincipal.getPnlGrfMun().getAtras().addActionListener(this);
+		vtnPrincipal.getPnlGrfPuesto().getAtras().addActionListener(this);
+
+		vtnPrincipal.getPnlListaInscritos().getVolver().addActionListener(this);
+
 	}
 
 	public void inscribir_Ciudadano() {
@@ -87,118 +99,191 @@ public class Controller implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getActionCommand().equals("Registrar Ciudadano")) {
-			vtnPrincipal.pnlAddPer.setVisible(true);
-			vtnPrincipal.pnlBuscarPer.setVisible(false);
-			vtnPrincipal.pnlGraficas.setVisible(false);
-			vtnPrincipal.pnlInicio.setVisible(false);
-			vtnPrincipal.pnlListaInscritos.setVisible(false);
+			vtnPrincipal.getPnlAddPer().setVisible(true);
+			vtnPrincipal.getPnlBuscarPer().setVisible(false);
+			vtnPrincipal.getPnlGraficas().setVisible(false);
+			vtnPrincipal.getPnlInicio().setVisible(false);
+			vtnPrincipal.getPnlGrfCol().setVisible(false);
+			vtnPrincipal.getPnlListaInscritos().setVisible(false);
+			vtnPrincipal.getPnlGrfHommuj().setVisible(false);
+			vtnPrincipal.getPnlGrfInscritos().setVisible(false);
+			vtnPrincipal.getPnlGrfCol().setVisible(false);
+			vtnPrincipal.getPnlGrfDep().setVisible(false);
+			vtnPrincipal.getPnlGrfMun().setVisible(false);
+			vtnPrincipal.getPnlGrfPuesto().setVisible(false);
 
 		}
 
 		if (e.getActionCommand().equals("Buscar Ciudadano")) {
-			vtnPrincipal.pnlAddPer.setVisible(false);
-			vtnPrincipal.pnlBuscarPer.setVisible(true);
-			vtnPrincipal.pnlGraficas.setVisible(false);
-			vtnPrincipal.pnlInicio.setVisible(false);
-			vtnPrincipal.pnlGrfHommuj.setVisible(false);
-			vtnPrincipal.pnlListaInscritos.setVisible(false);
+			vtnPrincipal.getPnlAddPer().setVisible(false);
+			vtnPrincipal.getPnlBuscarPer().setVisible(true);
+			vtnPrincipal.getPnlGraficas().setVisible(false);
+			vtnPrincipal.getPnlInicio().setVisible(false);
+			vtnPrincipal.getPnlGrfHommuj().setVisible(false);
+			vtnPrincipal.getPnlGrfCol().setVisible(false);
+			vtnPrincipal.getPnlListaInscritos().setVisible(false);
+			vtnPrincipal.getPnlGrfInscritos().setVisible(false);
+			vtnPrincipal.getPnlGrfCol().setVisible(false);
+			vtnPrincipal.getPnlGrfDep().setVisible(false);
+			vtnPrincipal.getPnlGrfMun().setVisible(false);
+			vtnPrincipal.getPnlGrfPuesto().setVisible(false);
 
 		}
 
 		if (e.getActionCommand().equals("Graficas")) {
-			vtnPrincipal.pnlAddPer.setVisible(false);
-			vtnPrincipal.pnlBuscarPer.setVisible(false);
-			vtnPrincipal.pnlGraficas.setVisible(true);
-			vtnPrincipal.pnlInicio.setVisible(false);
-			vtnPrincipal.pnlGrfHommuj.setVisible(false);
-			vtnPrincipal.pnlListaInscritos.setVisible(false);
+			vtnPrincipal.getPnlAddPer().setVisible(false);
+			vtnPrincipal.getPnlBuscarPer().setVisible(false);
+			vtnPrincipal.getPnlGraficas().setVisible(true);
+			vtnPrincipal.getPnlInicio().setVisible(false);
+			vtnPrincipal.getPnlGrfHommuj().setVisible(false);
+			vtnPrincipal.getPnlGrfCol().setVisible(false);
+			vtnPrincipal.getPnlListaInscritos().setVisible(false);
+			vtnPrincipal.getPnlGrfInscritos().setVisible(false);
+			vtnPrincipal.getPnlGrfCol().setVisible(false);
+			vtnPrincipal.getPnlGrfDep().setVisible(false);
+			vtnPrincipal.getPnlGrfMun().setVisible(false);
+			vtnPrincipal.getPnlGrfPuesto().setVisible(false);
 
 		}
 
 		if (e.getActionCommand().equals("Lista de Inscritos")) {
-			vtnPrincipal.pnlAddPer.setVisible(false);
-			vtnPrincipal.pnlBuscarPer.setVisible(false);
-			vtnPrincipal.pnlGraficas.setVisible(false);
-			vtnPrincipal.pnlInicio.setVisible(false);
-			vtnPrincipal.pnlGrfHommuj.setVisible(false);
-			vtnPrincipal.pnlListaInscritos.setVisible(true);
+			vtnPrincipal.getPnlAddPer().setVisible(false);
+			vtnPrincipal.getPnlBuscarPer().setVisible(false);
+			vtnPrincipal.getPnlGraficas().setVisible(false);
+			vtnPrincipal.getPnlInicio().setVisible(false);
+			vtnPrincipal.getPnlGrfHommuj().setVisible(false);
+			vtnPrincipal.getPnlGrfCol().setVisible(false);
+			vtnPrincipal.getPnlListaInscritos().setVisible(true);
+			vtnPrincipal.getPnlGrfInscritos().setVisible(false);
+			vtnPrincipal.getPnlGrfCol().setVisible(false);
+			vtnPrincipal.getPnlGrfDep().setVisible(false);
+			vtnPrincipal.getPnlGrfMun().setVisible(false);
+			vtnPrincipal.getPnlGrfPuesto().setVisible(false);
 		}
 
 		if (e.getActionCommand().equals("Hombres-Mujeres")) {
-			vtnPrincipal.pnlAddPer.setVisible(false);
-			vtnPrincipal.pnlBuscarPer.setVisible(false);
-			vtnPrincipal.pnlGraficas.setVisible(false);
-			vtnPrincipal.pnlInicio.setVisible(false);
-			vtnPrincipal.pnlGrfHommuj.setVisible(true);
-			vtnPrincipal.pnlListaInscritos.setVisible(false);
+			vtnPrincipal.getPnlAddPer().setVisible(false);
+			vtnPrincipal.getPnlBuscarPer().setVisible(false);
+			vtnPrincipal.getPnlGraficas().setVisible(false);
+			vtnPrincipal.getPnlInicio().setVisible(false);
+			vtnPrincipal.getPnlGrfHommuj().setVisible(true);
+			vtnPrincipal.getPnlGrfCol().setVisible(false);
+			vtnPrincipal.getPnlListaInscritos().setVisible(false);
+			vtnPrincipal.getPnlGrfInscritos().setVisible(false);
+			vtnPrincipal.getPnlGrfCol().setVisible(false);
+			vtnPrincipal.getPnlGrfDep().setVisible(false);
+			vtnPrincipal.getPnlGrfMun().setVisible(false);
+			vtnPrincipal.getPnlGrfPuesto().setVisible(false);
 
 		}
 
 		if (e.getActionCommand().equals("Inscritos")) {
-			vtnPrincipal.pnlAddPer.setVisible(false);
-			vtnPrincipal.pnlBuscarPer.setVisible(false);
-			vtnPrincipal.pnlGraficas.setVisible(false);
-			vtnPrincipal.pnlInicio.setVisible(false);
-			vtnPrincipal.pnlGrfHommuj.setVisible(true);
-			vtnPrincipal.pnlListaInscritos.setVisible(false);
+			vtnPrincipal.getPnlAddPer().setVisible(false);
+			vtnPrincipal.getPnlBuscarPer().setVisible(false);
+			vtnPrincipal.getPnlGraficas().setVisible(false);
+			vtnPrincipal.getPnlInicio().setVisible(false);
+			vtnPrincipal.getPnlGrfHommuj().setVisible(true);
+			vtnPrincipal.getPnlGrfCol().setVisible(false);
+			vtnPrincipal.getPnlListaInscritos().setVisible(false);
+			vtnPrincipal.getPnlGrfInscritos().setVisible(true);
+			vtnPrincipal.getPnlGrfCol().setVisible(false);
+			vtnPrincipal.getPnlGrfDep().setVisible(false);
+			vtnPrincipal.getPnlGrfMun().setVisible(false);
+			vtnPrincipal.getPnlGrfPuesto().setVisible(false);
 
 		}
 
 		if (e.getActionCommand().equals("Inscritos-Colombia")) {
-			vtnPrincipal.pnlAddPer.setVisible(false);
-			vtnPrincipal.pnlBuscarPer.setVisible(false);
-			vtnPrincipal.pnlGraficas.setVisible(false);
-			vtnPrincipal.pnlInicio.setVisible(false);
-			vtnPrincipal.pnlGrfHommuj.setVisible(true);
-			vtnPrincipal.pnlListaInscritos.setVisible(false);
+			vtnPrincipal.getPnlAddPer().setVisible(false);
+			vtnPrincipal.getPnlBuscarPer().setVisible(false);
+			vtnPrincipal.getPnlGraficas().setVisible(false);
+			vtnPrincipal.getPnlInicio().setVisible(false);
+			vtnPrincipal.getPnlGrfHommuj().setVisible(false);
+			vtnPrincipal.getPnlGrfCol().setVisible(true);
+			vtnPrincipal.getPnlListaInscritos().setVisible(false);
+			vtnPrincipal.getPnlGrfInscritos().setVisible(false);
+			vtnPrincipal.getPnlGrfCol().setVisible(true);
+			vtnPrincipal.getPnlGrfDep().setVisible(false);
+			vtnPrincipal.getPnlGrfMun().setVisible(false);
+			vtnPrincipal.getPnlGrfPuesto().setVisible(false);
 
 		}
 
 		if (e.getActionCommand().equals("Inscritos-Departamento")) {
-			vtnPrincipal.pnlAddPer.setVisible(false);
-			vtnPrincipal.pnlBuscarPer.setVisible(false);
-			vtnPrincipal.pnlGraficas.setVisible(false);
-			vtnPrincipal.pnlInicio.setVisible(false);
-			vtnPrincipal.pnlGrfHommuj.setVisible(true);
-			vtnPrincipal.pnlListaInscritos.setVisible(false);
+			vtnPrincipal.getPnlAddPer().setVisible(false);
+			vtnPrincipal.getPnlBuscarPer().setVisible(false);
+			vtnPrincipal.getPnlGraficas().setVisible(false);
+			vtnPrincipal.getPnlInicio().setVisible(false);
+			vtnPrincipal.getPnlGrfHommuj().setVisible(true);
+			vtnPrincipal.getPnlGrfCol().setVisible(false);
+			vtnPrincipal.getPnlListaInscritos().setVisible(false);
+			vtnPrincipal.getPnlGrfInscritos().setVisible(false);
+			vtnPrincipal.getPnlGrfCol().setVisible(false);
+			vtnPrincipal.getPnlGrfDep().setVisible(false);
+			vtnPrincipal.getPnlGrfMun().setVisible(false);
+			vtnPrincipal.getPnlGrfPuesto().setVisible(false);
 
 		}
 		if (e.getActionCommand().equals("Inscritos-Municipio")) {
-			vtnPrincipal.pnlAddPer.setVisible(false);
-			vtnPrincipal.pnlBuscarPer.setVisible(false);
-			vtnPrincipal.pnlGraficas.setVisible(false);
-			vtnPrincipal.pnlInicio.setVisible(false);
-			vtnPrincipal.pnlGrfHommuj.setVisible(true);
-			vtnPrincipal.pnlListaInscritos.setVisible(false);
+			vtnPrincipal.getPnlAddPer().setVisible(false);
+			vtnPrincipal.getPnlBuscarPer().setVisible(false);
+			vtnPrincipal.getPnlGraficas().setVisible(false);
+			vtnPrincipal.getPnlInicio().setVisible(false);
+			vtnPrincipal.getPnlGrfHommuj().setVisible(true);
+			vtnPrincipal.getPnlGrfCol().setVisible(false);
+			vtnPrincipal.getPnlListaInscritos().setVisible(false);
+			vtnPrincipal.getPnlGrfInscritos().setVisible(false);
+			vtnPrincipal.getPnlGrfCol().setVisible(false);
+			vtnPrincipal.getPnlGrfDep().setVisible(false);
+			vtnPrincipal.getPnlGrfMun().setVisible(false);
+			vtnPrincipal.getPnlGrfPuesto().setVisible(false);
 
 		}
 		if (e.getActionCommand().equals("Inscritos-Puesto")) {
-			vtnPrincipal.pnlAddPer.setVisible(false);
-			vtnPrincipal.pnlBuscarPer.setVisible(false);
-			vtnPrincipal.pnlGraficas.setVisible(false);
-			vtnPrincipal.pnlInicio.setVisible(false);
-			vtnPrincipal.pnlGrfHommuj.setVisible(true);
-			vtnPrincipal.pnlListaInscritos.setVisible(false);
+			vtnPrincipal.getPnlAddPer().setVisible(false);
+			vtnPrincipal.getPnlBuscarPer().setVisible(false);
+			vtnPrincipal.getPnlGraficas().setVisible(false);
+			vtnPrincipal.getPnlInicio().setVisible(false);
+			vtnPrincipal.getPnlGrfHommuj().setVisible(true);
+			vtnPrincipal.getPnlGrfCol().setVisible(false);
+			vtnPrincipal.getPnlListaInscritos().setVisible(false);
+			vtnPrincipal.getPnlGrfInscritos().setVisible(false);
+			vtnPrincipal.getPnlGrfCol().setVisible(false);
+			vtnPrincipal.getPnlGrfDep().setVisible(false);
+			vtnPrincipal.getPnlGrfMun().setVisible(false);
+			vtnPrincipal.getPnlGrfPuesto().setVisible(false);
 
 		}
 
 		if (e.getActionCommand().equals("Regresar")) {
-			vtnPrincipal.pnlAddPer.setVisible(false);
-			vtnPrincipal.pnlBuscarPer.setVisible(false);
-			vtnPrincipal.pnlGraficas.setVisible(false);
-			vtnPrincipal.pnlInicio.setVisible(true);
-			vtnPrincipal.pnlGrfHommuj.setVisible(false);
-			vtnPrincipal.pnlListaInscritos.setVisible(false);
+			vtnPrincipal.getPnlAddPer().setVisible(false);
+			vtnPrincipal.getPnlBuscarPer().setVisible(false);
+			vtnPrincipal.getPnlGraficas().setVisible(false);
+			vtnPrincipal.getPnlInicio().setVisible(true);
+			vtnPrincipal.getPnlGrfHommuj().setVisible(false);
+			vtnPrincipal.getPnlGrfCol().setVisible(false);
+			vtnPrincipal.getPnlListaInscritos().setVisible(false);
+			vtnPrincipal.getPnlGrfInscritos().setVisible(false);
+			vtnPrincipal.getPnlGrfCol().setVisible(false);
+			vtnPrincipal.getPnlGrfDep().setVisible(false);
+			vtnPrincipal.getPnlGrfMun().setVisible(false);
+			vtnPrincipal.getPnlGrfPuesto().setVisible(false);
 
 		}
 
 		if (e.getActionCommand().equals("Atras")) {
-			vtnPrincipal.pnlAddPer.setVisible(false);
-			vtnPrincipal.pnlBuscarPer.setVisible(false);
-			vtnPrincipal.pnlGraficas.setVisible(true);
-			vtnPrincipal.pnlInicio.setVisible(false);
-			vtnPrincipal.pnlGrfHommuj.setVisible(false);
-			vtnPrincipal.pnlListaInscritos.setVisible(false);
+			vtnPrincipal.getPnlAddPer().setVisible(false);
+			vtnPrincipal.getPnlBuscarPer().setVisible(false);
+			vtnPrincipal.getPnlGraficas().setVisible(true);
+			vtnPrincipal.getPnlInicio().setVisible(false);
+			vtnPrincipal.getPnlGrfHommuj().setVisible(false);
+			vtnPrincipal.getPnlGrfCol().setVisible(false);
+			vtnPrincipal.getPnlListaInscritos().setVisible(false);
+			vtnPrincipal.getPnlGrfInscritos().setVisible(false);
+			vtnPrincipal.getPnlGrfCol().setVisible(false);
+			vtnPrincipal.getPnlGrfDep().setVisible(false);
+			vtnPrincipal.getPnlGrfMun().setVisible(false);
+			vtnPrincipal.getPnlGrfPuesto().setVisible(false);
 
 		}
 		if (e.getActionCommand().equals("Registrar")) {
