@@ -7,13 +7,18 @@ import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
+import co.edu.unbosque.model.FechaNacimientoExecpcion;
 import co.edu.unbosque.model.Persona;
 import co.edu.unbosque.view.VtnPrincipal;
 
@@ -23,11 +28,12 @@ public class Controller implements ActionListener {
 	private List<String> arregloCiudad = new ArrayList<String>();
 	private List<String> arregloPuesto = new ArrayList<String>();
 	private List<String> arregloDireccion = new ArrayList<String>();
+	private ArrayList<Persona> objRegistrop = new ArrayList();
 	private static final String SAMPLE_CSV_FILE_PATH = "Puestos_de_votacion.csv";
 
 	private Persona persona;
 	private VtnPrincipal vtnPrincipal;
-
+	
 	public Controller() {
 
 		vtnPrincipal = new VtnPrincipal();
@@ -88,7 +94,6 @@ public class Controller implements ActionListener {
 		vtnPrincipal.getPnlListaInscritos().getVolver().addActionListener(this);
 
 	}
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
@@ -105,7 +110,6 @@ public class Controller implements ActionListener {
 			vtnPrincipal.getPnlGrfDep().setVisible(false);
 			vtnPrincipal.getPnlGrfMun().setVisible(false);
 			vtnPrincipal.getPnlGrfPuesto().setVisible(false);
-
 		}
 
 		if (e.getActionCommand().equals("Buscar Ciudadano")) {
@@ -281,7 +285,59 @@ public class Controller implements ActionListener {
 
 		}
 		if (e.getActionCommand().equals("Registrar")) {
-			System.out.println("Registro");
+			DateFormat famt = new SimpleDateFormat("dd/MM/yyyy");
+			String mnombre1 = vtnPrincipal.getPnlAddPer().getIpnombre().getText();
+			String mnombre2 = vtnPrincipal.getPnlAddPer().getIsnombre().getText();
+			String mapellido1 = vtnPrincipal.getPnlAddPer().getIpapellido().getText();
+			String mapellido2 = vtnPrincipal.getPnlAddPer().getIsapellido().getText();
+			int mcedula= Integer.parseInt(vtnPrincipal.getPnlAddPer().getIcedula().getText());
+			String msexo= (String) vtnPrincipal.getPnlAddPer().getSexo().getSelectedItem();
+			String mlugarNacimiento= vtnPrincipal.getPnlAddPer().getInacimiento().getText();
+			String mlugarExpedicionCedula=vtnPrincipal.getPnlAddPer().getIexpedicion().getText();
+		    String FechaNacimiento = famt.format(this.vtnPrincipal.getPnlAddPer().getCalendario().getDate());
+		    String FechaExpedicion = famt.format(this.vtnPrincipal.getPnlAddPer().getCalendarioExpedicion().getDate());
+		    String mpuestovotacion= vtnPrincipal.getPnlAddPer().getIpuestodevotacion().getText();
+			int i = 0;
+		    int sizeArregloUsuarios = arregloPuesto.size();
+		     int error=0;
+			/////////////////////////////////////////////////////////////////////////////////
+		     /** 
+		      * Validación de que el puesto de Votacion sea Valido 
+		      */
+		    while(i<=sizeArregloUsuarios-1) {
+				if(arregloPuesto.get(i).equals(mpuestovotacion) ) {
+					JOptionPane.showMessageDialog(null, "Su puesto de Votacion es Valido"+"\t  ! REGISTRO VALIDO ! ", "Interfaz Registraduria", 1);
+					vtnPrincipal.getPnlAddPer().setVisible(true);
+					error=0;
+					break;
+				}else {
+					error = 1;
+				}
+				i++;
+		    }
+				if(error == 1 ) {
+				JOptionPane.showMessageDialog(null, "Puesto No Encontrado , Invalido , Verifique de nuevo.", "¡Error!", 2);
+				}
+			
+
+		    objRegistrop.add(new Persona(mnombre1,mnombre2, mapellido1, mapellido2, mcedula,msexo, FechaNacimiento,
+					FechaExpedicion,mlugarNacimiento,mlugarExpedicionCedula,mpuestovotacion));
+			
+			
+			//Prueba de que se guardan en el arraylist de Persona
+			for ( int a=0;a<objRegistrop.size();a++) {
+				System.out.println(objRegistrop.get(a).getPrimerNombre());
+				System.out.println(objRegistrop.get(a).getSegundoNombre());
+				System.out.println(objRegistrop.get(a).getPrimerApellido());
+				System.out.println(objRegistrop.get(a).getSegundoApellido());
+				System.out.println(objRegistrop.get(a).getCedula());
+				System.out.println(objRegistrop.get(a).getSexo());
+				System.out.println(objRegistrop.get(a).getFechaDeNacimiento());
+				System.out.println(objRegistrop.get(a).getFechaExpedicionCedula());
+				System.out.println(objRegistrop.get(a).getLugarDeNacimiento());
+				System.out.println(objRegistrop.get(a).getLugarExpedicionCedula());
+				System.out.println(objRegistrop.get(a).getPuestodevotacion());
+			}
 		}
 
 	

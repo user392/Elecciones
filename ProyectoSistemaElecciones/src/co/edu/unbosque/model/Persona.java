@@ -6,26 +6,38 @@ public class Persona implements PuestoDeVotacion {
 	private String segundoNombre;
 	private String primerApellido;
 	private String segundoApellido;
-	private String cedula;
-	private char sexo;
+	private int cedula;
+	private String sexo;
 	private String fechaDeNacimiento;
 	private String fechaExpedicionCedula;
 	private String lugarDeNacimiento;
 	private String lugarExpedicionCedula;
+	private String puestodevotacion;
 
 	public Persona() {
-
-		primerNombre = "";
-		segundoNombre = "";
-		primerApellido = "";
-		segundoApellido = "";
-		cedula = "";
-		sexo = ' ';
-		fechaDeNacimiento = "";
-		fechaExpedicionCedula = "";
-		lugarDeNacimiento = "";
-		lugarExpedicionCedula = "";
 	}
+	
+	public Persona(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
+			int cedula, String sexo, String fechaDeNacimiento, String fechaExpedicionCedula, String lugarDeNacimiento,
+			String lugarExpedicionCedula, String puestodevotacion) {
+		this.primerNombre = primerNombre;
+		this.segundoNombre = segundoNombre;
+		this.primerApellido = primerApellido;
+		this.segundoApellido = segundoApellido;
+		this.cedula = cedula;
+		this.sexo = sexo;
+		this.fechaDeNacimiento = fechaDeNacimiento;
+		this.fechaExpedicionCedula = fechaExpedicionCedula;
+		this.lugarDeNacimiento = lugarDeNacimiento;
+		this.lugarExpedicionCedula = lugarExpedicionCedula;
+		this.puestodevotacion = puestodevotacion;
+	
+
+
+
+	}
+	
+
 
 	public String getPrimerNombre() {
 		return primerNombre;
@@ -59,19 +71,21 @@ public class Persona implements PuestoDeVotacion {
 		this.segundoApellido = segundoApellido;
 	}
 
-	public String getCedula() {
+	public int getCedula() {
 		return cedula;
 	}
 
-	public void setCedula(String cedula) {
+	public void setCedula(int cedula) {
 		this.cedula = cedula;
 	}
 
-	public char getSexo() {
+	
+
+	public String getSexo() {
 		return sexo;
 	}
 
-	public void setSexo(char sexo) {
+	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
 
@@ -105,6 +119,14 @@ public class Persona implements PuestoDeVotacion {
 
 	public void setLugarExpedicionCedula(String lugarExpedicionCedula) {
 		this.lugarExpedicionCedula = lugarExpedicionCedula;
+	}
+
+	public String getPuestodevotacion() {
+		return puestodevotacion;
+	}
+
+	public void setPuestodevotacion(String puestodevotacion) {
+		this.puestodevotacion = puestodevotacion;
 	}
 
 	@Override

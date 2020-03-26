@@ -14,9 +14,11 @@ import com.toedter.calendar.JDateChooser;
 
 public class PnlAddPer extends JPanel
 {
-	private JLabel pnombre, snombre, papellido, sapellido, expedicion, cedula, nacimiento, genero, año, fexpedicion;
+	private JLabel pnombre, snombre, papellido, sapellido, expedicion, cedula, nacimiento, genero, año, fexpedicion
+	,JPuestodevotacion;
 	
-	private JTextField ipnombre, ipapellido, isnombre, isapellido, iexpedicion, icedula, inacimiento, iaño;
+	private JTextField ipnombre, ipapellido, isnombre, isapellido, iexpedicion, icedula, inacimiento, iaño
+	,ipuestodevotacion;
 	
 	private JComboBox<String> sexo, dia, mes;
 	private JDateChooser calendario , calendarioExpedicion;
@@ -117,7 +119,6 @@ public class PnlAddPer extends JPanel
 		add(iexpedicion);
 		
 		
-		
 		genero = new JLabel("Genero: ");
 		genero.setSize(150, 30);
 		genero.setLocation(600, 50);
@@ -157,10 +158,20 @@ public class PnlAddPer extends JPanel
 		calendarioExpedicion.setDateFormatString("dd-MM-yyyy");
 		add(calendarioExpedicion);
 		
+		JPuestodevotacion = new JLabel("Puesto de Votación : ");
+		JPuestodevotacion.setSize(150, 30);
+		JPuestodevotacion.setLocation(600, 230);
+		add(JPuestodevotacion);
+		
+		ipuestodevotacion = new JTextField();
+		ipuestodevotacion.setSize(190, 30);
+		ipuestodevotacion.setLocation(650, 260);
+		add(ipuestodevotacion);
+		
 		Registrar = new JButton("Registrar");
 		Registrar.setBackground(Color.ORANGE);
-		Registrar.setSize(150, 30);
-		Registrar.setLocation(630, 250);
+		Registrar.setSize(160, 30);
+		Registrar.setLocation(650, 340);
 		add(Registrar);
 		
 		
@@ -169,6 +180,23 @@ public class PnlAddPer extends JPanel
 		volver.setSize(120, 30);
 		volver.setLocation(761, 468);
 		add(volver);
+	}
+	
+
+	public JLabel getJPuestodevotacion() {
+		return JPuestodevotacion;
+	}
+
+	public void setJPuestodevotacion(JLabel jPuestodevotacion) {
+		JPuestodevotacion = jPuestodevotacion;
+	}
+
+	public JTextField getIpuestodevotacion() {
+		return ipuestodevotacion;
+	}
+
+	public void setIpuestodevotacion(JTextField ipuestodevotacion) {
+		this.ipuestodevotacion = ipuestodevotacion;
 	}
 
 	public JLabel getPnombre() {
