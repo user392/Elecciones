@@ -1,21 +1,23 @@
 package co.edu.unbosque.model;
 
-public class Persona implements PuestoDeVotacion {
+import java.io.Serializable;
 
-	private String primerNombre;
-	private String segundoNombre;
-	private String primerApellido;
-	private String segundoApellido;
-	private int cedula;
-	private String sexo;
-	private String fechaDeNacimiento;
-	private String fechaExpedicionCedula;
-	private String lugarDeNacimiento;
-	private String lugarExpedicionCedula;
-	private String puestodevotacion;
+public class Persona implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	
+	protected String primerNombre;
+	protected String segundoNombre;
+	protected String primerApellido;
+	protected String segundoApellido;
+	protected int cedula;
+	protected String sexo;
+	protected String fechaDeNacimiento;
+	protected String fechaExpedicionCedula;
+	protected String lugarDeNacimiento;
+	protected String lugarExpedicionCedula;
+	protected String puestodevotacion;
 
-	public Persona() {
-	}
 	
 	public Persona(String primerNombre, String segundoNombre, String primerApellido, String segundoApellido,
 			int cedula, String sexo, String fechaDeNacimiento, String fechaExpedicionCedula, String lugarDeNacimiento,
@@ -127,42 +129,6 @@ public class Persona implements PuestoDeVotacion {
 
 	public void setPuestodevotacion(String puestodevotacion) {
 		this.puestodevotacion = puestodevotacion;
-	}
-
-	@Override
-	public String pais() {
-		String pais = "";
-		return pais;
-	}
-
-	@Override
-	public String departamento() {
-		String departamento = "";
-		return departamento;
-	}
-
-	@Override
-	public String municipio() {
-		String municipio = "";
-		return municipio;
-	}
-
-	@Override
-	public String lugarVotacion() {
-		String lugarVotacion = "";
-		return lugarVotacion;
-	}
-
-	@Override
-	public String direccion() {
-		String direccion = "";
-		return direccion;
-	}
-
-	@Override
-	public String Consulado() {
-		String consulado = "";
-		return consulado;
 	}
 
 }

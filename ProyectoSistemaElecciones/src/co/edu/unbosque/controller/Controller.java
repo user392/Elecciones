@@ -20,6 +20,8 @@ import org.apache.commons.csv.CSVRecord;
 
 import co.edu.unbosque.model.FechaNacimientoExecpcion;
 import co.edu.unbosque.model.Persona;
+import co.edu.unbosque.model.Persistencia.ArchivoBinario;
+import co.edu.unbosque.model.Persistencia.Persistencia;
 import co.edu.unbosque.view.VtnPrincipal;
 
 public class Controller implements ActionListener {
@@ -30,15 +32,20 @@ public class Controller implements ActionListener {
 	private List<String> arregloDireccion = new ArrayList<String>();
 	private ArrayList<Persona> objRegistrop = new ArrayList();
 	private static final String SAMPLE_CSV_FILE_PATH = "Puestos_de_votacion.csv";
-
 	private Persona persona;
 	private VtnPrincipal vtnPrincipal;
+	private Persistencia Persi;
 	
-	public Controller() {
+    private ArchivoBinario ab;
+	
+   
+    public Controller() {
 
 		vtnPrincipal = new VtnPrincipal();
-		Persona persona = new Persona();
-
+		//Persona persona = new Persona();
+       Persi = new Persistencia (); 
+       Persi.getAb().escribirArchivoBinario();
+       
 		try (
 
 				Reader reader = Files.newBufferedReader(Paths.get(SAMPLE_CSV_FILE_PATH), StandardCharsets.ISO_8859_1);
@@ -63,6 +70,7 @@ public class Controller implements ActionListener {
 
 			e.printStackTrace();
 		}
+    
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		vtnPrincipal.getPnlInicio().getRegistrarCiu().addActionListener(this);
@@ -94,9 +102,10 @@ public class Controller implements ActionListener {
 		vtnPrincipal.getPnlListaInscritos().getVolver().addActionListener(this);
 
 	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+String comando ; 
 		if (e.getActionCommand().equals("Registrar Ciudadano")) {
 			vtnPrincipal.getPnlAddPer().setVisible(true);
 			vtnPrincipal.getPnlBuscarPer().setVisible(false);
@@ -157,6 +166,8 @@ public class Controller implements ActionListener {
 			vtnPrincipal.getPnlGrfDep().setVisible(false);
 			vtnPrincipal.getPnlGrfMun().setVisible(false);
 			vtnPrincipal.getPnlGrfPuesto().setVisible(false);
+			Persi.getAb().leerRegistro();
+			mostrarRegistros();
 		}
 
 		if (e.getActionCommand().equals("Hombres-Mujeres")) {
@@ -286,15 +297,15 @@ public class Controller implements ActionListener {
 		}
 		if (e.getActionCommand().equals("Registrar")) {
 			DateFormat famt = new SimpleDateFormat("dd/MM/yyyy");
-			String mnombre1 = vtnPrincipal.getPnlAddPer().getIpnombre().getText();
-			String mnombre2 = vtnPrincipal.getPnlAddPer().getIsnombre().getText();
-			String mapellido1 = vtnPrincipal.getPnlAddPer().getIpapellido().getText();
-			String mapellido2 = vtnPrincipal.getPnlAddPer().getIsapellido().getText();
-			int mcedula= Integer.parseInt(vtnPrincipal.getPnlAddPer().getIcedula().getText());
-			String msexo= (String) vtnPrincipal.getPnlAddPer().getSexo().getSelectedItem();
-			String mlugarNacimiento= vtnPrincipal.getPnlAddPer().getInacimiento().getText();
-			String mlugarExpedicionCedula=vtnPrincipal.getPnlAddPer().getIexpedicion().getText();
-		    String FechaNacimiento = famt.format(this.vtnPrincipal.getPnlAddPer().getCalendario().getDate());
+			 String mnombre1 = vtnPrincipal.getPnlAddPer().getIpnombre().getText();
+			 String mnombre2 = vtnPrincipal.getPnlAddPer().getIsnombre().getText();
+			 String mapellido1 = vtnPrincipal.getPnlAddPer().getIpapellido().getText();
+			 String mapellido2 = vtnPrincipal.getPnlAddPer().getIsapellido().getText();
+			 int mcedula= Integer.parseInt(vtnPrincipal.getPnlAddPer().getIcedula().getText());
+			 String msexo= (String) vtnPrincipal.getPnlAddPer().getSexo().getSelectedItem();
+			 String mlugarNacimiento= vtnPrincipal.getPnlAddPer().getInacimiento().getText();
+			 String mlugarExpedicionCedula=vtnPrincipal.getPnlAddPer().getIexpedicion().getText();
+		     String FechaNacimiento = famt.format(this.vtnPrincipal.getPnlAddPer().getCalendario().getDate());
 		    String FechaExpedicion = famt.format(this.vtnPrincipal.getPnlAddPer().getCalendarioExpedicion().getDate());
 		    String mpuestovotacion= vtnPrincipal.getPnlAddPer().getIpuestodevotacion().getText();
 			int i = 0;
@@ -318,11 +329,11 @@ public class Controller implements ActionListener {
 				if(error == 1 ) {
 				JOptionPane.showMessageDialog(null, "Puesto No Encontrado , Invalido , Verifique de nuevo.", "¡Error!", 2);
 				}
-			
+		
 
-		    objRegistrop.add(new Persona(mnombre1,mnombre2, mapellido1, mapellido2, mcedula,msexo, FechaNacimiento,
+		objRegistrop.add(new Persona(mnombre1,mnombre2, mapellido1, mapellido2, mcedula,msexo, FechaNacimiento,
 					FechaExpedicion,mlugarNacimiento,mlugarExpedicionCedula,mpuestovotacion));
-			
+	
 			
 			//Prueba de que se guardan en el arraylist de Persona
 			for ( int a=0;a<objRegistrop.size();a++) {
@@ -338,15 +349,39 @@ public class Controller implements ActionListener {
 				System.out.println(objRegistrop.get(a).getLugarExpedicionCedula());
 				System.out.println(objRegistrop.get(a).getPuestodevotacion());
 			}
+			 
+			
+		Persi.getAb().escribirRegistro(mnombre1,mnombre2, mapellido1, mapellido2, mcedula,msexo, FechaNacimiento,
+					FechaExpedicion,mlugarNacimiento,mlugarExpedicionCedula,mpuestovotacion);
 		}
+	
 
 	
 	}
+	
+	private void mostrarRegistros() {
+		for (int i= 0 ; i<1 ; i++) {
+			vtnPrincipal.getPnlListaInscritos().getTxtnombre1().append(String.valueOf(Persi.getAb().getDatos()[i].getPrimerNombre())+"\n");		
+			vtnPrincipal.getPnlListaInscritos().getTxtnombre2().append(String.valueOf(Persi.getAb().getDatos()[i].getSegundoNombre())+"\n");
+			vtnPrincipal.getPnlListaInscritos().getTxtapellido1().append(String.valueOf(Persi.getAb().getDatos()[i].getPrimerApellido())+"\n");
+			vtnPrincipal.getPnlListaInscritos().getTxtapellido2().append(String.valueOf(Persi.getAb().getDatos()[i].getSegundoApellido())+"\n");
+			vtnPrincipal.getPnlListaInscritos().getTxtcedula().append(String.valueOf(Persi.getAb().getDatos()[i].getCedula())+"\n");
+			vtnPrincipal.getPnlListaInscritos().getTxtsexo().append(String.valueOf(Persi.getAb().getDatos()[i].getSexo())+"\n");
+			vtnPrincipal.getPnlListaInscritos().getTxtfechanacimiento().append(String.valueOf(Persi.getAb().getDatos()[i].getFechaDeNacimiento())+"\n");		
+			vtnPrincipal.getPnlListaInscritos().getTxtfechaExpedicion().append(String.valueOf(Persi.getAb().getDatos()[i].getFechaExpedicionCedula())+"\n");
+			vtnPrincipal.getPnlListaInscritos().getTxtlugarNacimiento().append(String.valueOf(Persi.getAb().getDatos()[i].getLugarDeNacimiento())+"\n");
+			vtnPrincipal.getPnlListaInscritos().getTxtlugarexpedicion().append(String.valueOf(Persi.getAb().getDatos()[i].getLugarExpedicionCedula())+"\n");		
+			vtnPrincipal.getPnlListaInscritos().getTxtpuestodevotacion().append(String.valueOf(Persi.getAb().getDatos()[i].getPuestodevotacion())+"\n");
+		
+		}	
+	}
 
+	
 	public void inscribir_Ciudadano() {
 
 	}
-	  public void comprobar_Cedula() {
+	
+	public void comprobar_Cedula() {
 
 	    }
 
